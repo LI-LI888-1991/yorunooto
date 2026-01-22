@@ -3,12 +3,14 @@ import React from 'react';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary' | 'icon';
     size?: 'md' | 'lg' | 'icon';
+    fullWidth?: boolean;
     children: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({
     variant = 'primary',
     size = 'md',
+    fullWidth = false,
     children,
     className = '',
     ...props
@@ -29,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
 
     return (
         <button
-            className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+            className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${fullWidth ? 'w-full' : ''} ${className}`}
             {...props}
         >
             {children}
